@@ -1,3 +1,5 @@
+/* global localStorage */
+
 const supportedLanguages = ['tr', 'en'];
 const savedLanguage = localStorage.getItem('sahtekar-site-language');
 const browserLanguage = navigator.language.toLowerCase().startsWith('tr')
