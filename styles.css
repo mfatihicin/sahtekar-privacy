@@ -501,3 +501,24 @@ body[data-language='en'] [data-language-content='en'] {
     transition: none !important;
   }
 }
+
+/* legal pages 2026-11 */
+.section ol {
+  margin: 14px 0 0;
+  padding-left: 22px;
+}
+
+.section ol li {
+  margin-bottom: 9px;
+  color: var(--muted);
+}
+
+.footer p {
+  margin: 10px 0 0;
+}
+
+.hero-copy a,
+.notice p a {
+  color: var(--coral);
+  font-weight: 700;
+}
