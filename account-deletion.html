@@ -96,7 +96,8 @@
             <h2>Neler saklanabilir ve ne kadar?</h2>
 <ul>
               <li><strong>Senin hakkında yapılmış şikâyetler:</strong> başka oyuncuların gönderdiği şikâyetler, seninle bağı kaldırılarak moderasyon ve hukuki talepler için en fazla <strong>12 ay</strong> saklanabilir.</li>
-              <li><strong>Firebase Analytics istatistikleri:</strong> hesabınla değil rastgele bir uygulama kurulum kimliğiyle ilişkilidir; Google'ın Analytics saklama ayarına göre (2 veya 14 ay) silinir.</li>
+              <li><strong>Firebase Analytics istatistikleri (yalnız eski sürümlerden):</strong> güncel sürüm Firebase Analytics'e veri göndermez. Eski sürümlerden gelmiş veriler hesabınla değil rastgele bir uygulama kurulum kimliğiyle ilişkilidir; Google'ın Analytics saklama ayarına göre (2 veya 14 ay) silinir.</li>
+              <li><strong>Kullanılmayan misafir hesaplar:</strong> kendin silmesen de, 24 ay boyunca hiç kullanılmayan ve satın alma yapılmamış misafir hesaplar aynı kapsamda otomatik silinir.</li>
               <li><strong>Sunucu günlükleri ve veritabanı yedekleri:</strong> Supabase tarafından kısa süreli tutulur ve kendiliğinden silinir.</li>
               <li><strong>Satın alma kayıtları:</strong> Premium, Apple/Google hesabına bağlıdır. Mağazalar ve RevenueCat (anonim kimlikle) satın alma kayıtlarını kendi politikaları ve yasal yükümlülükleri gereği saklar; Premium'u "Satın alımı geri yükle" ile geri alabilirsin.</li>
               <li><strong>Reklam ağlarının verileri:</strong> reklam ağları kendi işledikleri verileri kendi politikalarına göre saklar.</li>
@@ -171,7 +172,8 @@
             <h2>What may be kept, and for how long?</h2>
 <ul>
               <li><strong>Reports about you:</strong> reports other players sent may be kept, without the link to your account, for moderation and legal requests for up to <strong>12 months</strong>.</li>
-              <li><strong>Firebase Analytics statistics:</strong> linked to a random app-instance ID, not to your account; deleted according to Google's Analytics retention setting (2 or 14 months).</li>
+              <li><strong>Firebase Analytics statistics (older versions only):</strong> the current version sends nothing to Firebase Analytics. Data from older versions is linked to a random app-instance ID, not to your account, and is deleted according to Google's Analytics retention setting (2 or 14 months).</li>
+              <li><strong>Unused guest accounts:</strong> even if you don't delete it yourself, a guest account that has not been used at all for 24 months and has no purchase is deleted automatically with the same scope.</li>
               <li><strong>Server logs and database backups:</strong> kept briefly by Supabase and deleted automatically.</li>
               <li><strong>Purchase records:</strong> Premium is tied to your Apple/Google account. The stores and RevenueCat (with an anonymous ID) keep purchase records under their own policies and legal obligations; you can get Premium back with "Restore purchase".</li>
               <li><strong>Ad network data:</strong> ad networks keep the data they process under their own policies.</li>

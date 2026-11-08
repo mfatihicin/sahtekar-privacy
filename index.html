@@ -88,7 +88,7 @@
               <li><strong>Sosyal:</strong> arkadaşlıklar ve istekler, engellediğin oyuncular, oda davetleri ve uygulama içi bildirimler (ör. "Yeni arkadaşlık isteği").</li>
               <li><strong>Şikâyet ve sorun bildirimleri:</strong> seçtiğin kategori, yazdığın açıklama (en çok 2000 karakter), ilgili oda ve oyuncu.</li>
               <li><strong>Bildirim jetonu:</strong> bildirimlere izin verirsen cihazının bildirim jetonu ve platformu (iOS/Android).</li>
-              <li><strong>Kullanım istatistikleri:</strong> uygulama içi olaylar (ör. oyun başlatma, oda kurma) Supabase'e kullanıcı kimliğinle, Google Firebase Analytics'e ise rastgele bir uygulama kurulum kimliğiyle gönderilir. Uygulamanın güncel sürümünde Firebase Analytics'te reklam kimliği toplama ve reklam kişiselleştirme sinyalleri kapalıdır; daha önceki sürümlerde Firebase Analytics, cihaz izin verdiğinde reklam kimliğini de alabiliyordu.</li>
+              <li><strong>Kullanım istatistikleri:</strong> uygulama içi olaylar (ör. oyun başlatma, oda kurma) kendi sunucumuza (Supabase) kullanıcı kimliğinle gönderilir. Uygulamanın güncel sürümünde <strong>Google Firebase Analytics tamamen kapalıdır</strong>; Google'a kullanım istatistiği gönderilmez. Daha önceki sürümler olayları ayrıca Firebase Analytics'e rastgele bir uygulama kurulum kimliğiyle gönderiyordu (bazı eski sürümlerde cihaz izin verdiğinde reklam kimliğiyle birlikte).</li>
               <li><strong>Satın alma:</strong> Premium satın alma bilgisi, mağaza makbuzu ve işlem kimliği. RevenueCat, satın alımı Supabase hesabından bağımsız, anonim bir kimlikle doğrular.</li>
               <li><strong>Reklam ve cihaz verileri:</strong> reklam ortaklarının işlediği veriler için "Reklamlar" bölümüne bak.</li>
               <li><strong>Teknik kayıtlar:</strong> sunucu güvenliği ve hata ayıklama için IP adresi, istek zamanı ve istek bilgisi (Supabase sunucu günlükleri).</li>
@@ -128,12 +128,13 @@
             <p>Bu ağlar şu verileri işleyebilir: reklam kimliği (iOS'ta IDFA yalnızca izin verirsen; Android'de Google reklam kimliği), uygulama satıcı kimliği (IDFV), IP adresi ve buna dayalı yaklaşık konum, cihaz modeli, işletim sistemi ve dil, reklam görüntüleme ve tıklama gibi etkileşimler, hata ve performans gibi tanılama verileri.</p>
             <p><strong>Seçimlerin:</strong></p>
             <ul>
-              <li><strong>iOS:</strong> Reklam sistemi başlamadan önce Apple'ın Uygulama İzleme Şeffaflığı (ATT) penceresiyle izin istenir. İzin vermezsen IDFA paylaşılmaz. Tercihini Ayarlar › Gizlilik ve Güvenlik › İzleme bölümünden değiştirebilirsin.</li>
-              <li><strong>AEA, Birleşik Krallık ve İsviçre:</strong> İlk açılışta reklamların kişiselleştirilmesi için onayın sorulur.</li>
+              <li><strong>Rıza ekranı (Türkiye dahil AEA dışı her yer):</strong> Uygulamanın güncel sürümünde reklamlar başlamadan önce, kayıtlı bir seçimin yoksa, <strong>"Kişiselleştirilmiş reklam izni"</strong> ekranı bir kez gösterilir (mevcut kullanıcılara güncellemeden sonraki ilk açılışta, oyun sırasında değil, ana ekran gibi bir ekranda). Bu ekran aydınlatma metninden ayrıdır; ne anlama geldiğini, reklam kimliği ile cihaz ve reklam etkileşimi verilerinin yurt dışındaki reklam ortaklarına aktarılacağını açıklar ve eşit iki seçenek sunar: <strong>Kabul ediyorum</strong> / <strong>Kabul etmiyorum</strong>. Kişiselleştirilmiş reklamın hukuki sebebi bu ekranda verdiğin <strong>açık rızadır</strong>; isteğe bağlıdır ve hiçbir özellik buna bağlı değildir.</li>
+              <li><strong>AEA, Birleşik Krallık ve İsviçre:</strong> Aynı yerde GDPR rıza penceresi gösterilir (kişiselleştirilmiş / kişiselleştirilmemiş reklam).</li>
+              <li><strong>iOS:</strong> Apple'ın Uygulama İzleme Şeffaflığı (ATT) penceresi yalnızca kişiselleştirilmiş reklamı kabul edersen gösterilir; kabul etmezsen ATT hiç sorulmaz ve IDFA paylaşılmaz. Tercihini Ayarlar › Gizlilik ve Güvenlik › İzleme bölümünden de değiştirebilirsin.</li>
               <li><strong>ABD:</strong> Kişiselleştirilmemiş reklamı seçmen, ABD eyalet gizlilik yasaları (CCPA/CPRA gibi) kapsamında kişisel bilgilerinin hedefli reklam için "satılmasını" veya "paylaşılmasını" reddetmen anlamına gelir; bu sinyali Unity LevelPlay'e iletiriz.</li>
-              <li><strong>Türkiye ve diğer ülkeler:</strong> Şu anki sürümlerde Türkiye'deki kullanıcılara ilk açılışta ayrı bir reklam rıza ekranı gösterilmez; iOS'ta reklam kimliği yalnızca ATT'de izin verirsen paylaşılır; Android'de reklam ağları cihazın reklam kimliğini kullanabilir. Kişiselleştirilmiş reklam istemiyorsan uygulamadaki <strong>Profil ve ayarlar › Gizlilik Seçenekleri</strong> ile "kişiselleştirilmemiş" seçeneğini seçebilir ve/veya cihaz ayarlarından reklam kimliğini silebilirsin.</li>
-              <li><strong>Her bölgede:</strong> Seçimini istediğin zaman Profil ve ayarlar › Gizlilik Seçenekleri'nden değiştirebilirsin. Kişiselleştirilmemiş reklamı seçtiğinde de reklam görürsün, ama reklam ağına kişisel verilerini hedefleme için kullanmaması bildirilir. Android'de reklam kimliğini cihazının Ayarlar › Gizlilik (veya Google) › Reklamlar bölümünden sıfırlayabilir veya silebilirsin.</li>
-              <li><strong>Premium:</strong> Premium'da banner ve geçiş reklamları gösterilmez; ödüllü reklamı yalnızca sen istersen izlersin. Premium'da da reklam sistemi uygulamada başlatılır (ve iOS'ta ATT penceresi görünebilir); bu nedenle reklam ağları temel cihaz verilerini işlemeye devam edebilir.</li>
+              <li><strong>Kabul etmezsen (veya seçim yoksa):</strong> reklam görmeye devam edersin ama reklamlar kişiselleştirilmez; Unity LevelPlay'e iOS ve Android'de "rıza yok" ve "satma/paylaşma" sinyali gönderilir. Reklamın gösterilmesi için IP adresi ve temel cihaz bilgisi yine reklam ağlarına iletilir (meşru menfaat). <strong>Eski sürümler</strong> bu ekranı içermiyordu; bu sürümlerde <strong>Profil ve ayarlar › Gizlilik Seçenekleri</strong>'nden "kişiselleştirilmemiş"i seçebilir ve/veya cihaz ayarlarından reklam kimliğini silebilirsin.</li>
+              <li><strong>Her bölgede:</strong> Rızanı istediğin zaman <strong>Profil ve ayarlar › Gizlilik Seçenekleri</strong>'nden geri alabilir veya değiştirebilirsin (satırda mevcut durum yazar). Kişiselleştirilmemiş reklamı seçtiğinde de reklam görürsün, ama reklam ağına kişisel verilerini hedefleme için kullanmaması bildirilir. Android'de reklam kimliğini cihazının Ayarlar › Gizlilik (veya Google) › Reklamlar bölümünden sıfırlayabilir veya silebilirsin.</li>
+              <li><strong>Premium:</strong> Premium'da (72 saatlik deneme dahil) reklam gösterilmez. Uygulamanın güncel sürümünde Premium'da reklam sistemi (Unity LevelPlay SDK'sı) <strong>hiç başlatılmaz</strong>, rıza ekranı ve iOS ATT penceresi gösterilmez; bu yüzden reklam ağlarına veri gitmez. Deneme biterse reklam sistemi bir sonraki açılışta, yukarıdaki rıza adımıyla başlar. Eski sürümlerde reklam sistemi Premium'da da başlatılıyordu.</li>
             </ul>
           </section>
           <section class="section">
@@ -141,7 +142,7 @@
             <h2>Hizmet sağlayıcılar ve ülkeler</h2>
 <ul>
               <li><strong>Supabase Inc.</strong> — hesap ve kimlik doğrulama, veritabanı, çevrimiçi odalar, sunucu fonksiyonları, bildirim gönderimi · sunucular Frankfurt, Almanya (AB, eu-central-1); şirket ABD'de</li>
-              <li><strong>Google LLC</strong> — Firebase Analytics (kullanım istatistikleri), Firebase Cloud Messaging (bildirim iletimi), Google ile Giriş, Google Play (dağıtım ve ödeme) · ABD ve diğer ülkeler</li>
+              <li><strong>Google LLC</strong> — Firebase Cloud Messaging (bildirim iletimi; güncel sürümde Firebase Analytics kapalı), Google ile Giriş, Google Play (dağıtım ve ödeme) · ABD ve diğer ülkeler</li>
               <li><strong>Apple Inc.</strong> — Apple ile Giriş, Apple Push Notification service, App Store (dağıtım ve ödeme) · ABD ve diğer ülkeler</li>
               <li><strong>RevenueCat Inc.</strong> — Premium satın alımını doğrulama ve geri yükleme · ABD</li>
               <li><strong>Reklam ortakları</strong> — aşağıdaki "Reklamlar" bölümünde adlarıyla sayılmıştır · ABD, İsrail, Singapur, Rusya Federasyonu/BAE ve diğer ülkeler</li>
@@ -160,13 +161,13 @@
             <h2>Saklama süreleri</h2>
 <ul>
               <li><strong>Hesap, profil, oyuncu adı, oyun geçmişi, sezon puanları, arkadaşlıklar ve engellemeler:</strong> hesabın var olduğu sürece (istatistik ve sıralamalar için). Hesabını sildiğinde hemen silinir.</li>
-              <li><strong>Misafir hesaplar:</strong> sen silene kadar saklanır. Uzun süre kullanılmayan misafir hesapların kendiliğinden silinmesi için bir süre şu an uygulanmamaktadır; misafir hesabını da uygulamadan istediğin an silebilirsin.</li>
+              <li><strong>Misafir hesaplar:</strong> <strong>24 ay</strong> boyunca hiç kullanılmayan (açılış, oyun, oda, arkadaşlık, bildirim jetonu gibi hiçbir etkinlik olmayan) ve satın alma yapılmamış misafir hesaplar, sunucudaki tüm verileriyle birlikte günlük bakım işiyle otomatik silinir (hesap silmeyle aynı kapsamda). Misafir hesabını uygulamadan istediğin an kendin de silebilirsin. E-postayla veya Google/Apple ile bağlanmış hesaplar bu şekilde silinmez.</li>
               <li><strong>Oda verileri</strong> (oda, oyuncular, roller, ipuçları, oylar, tur sonuçları): kapanan odalar son işlemden <strong>30 gün</strong> sonra silinir; uzun süre hareketsiz kalan açık odalar otomatik kapatılır.</li>
               <li><strong>Uygulama içi bildirimler</strong> (arkadaşlık isteği, davet): <strong>90 gün</strong>.</li>
-              <li><strong>Bildirim jetonu:</strong> <strong>270 gün</strong> boyunca yenilenmezse silinir; hesabını silince hemen silinir.</li>
+              <li><strong>Bildirim jetonu:</strong> <strong>270 gün</strong> boyunca yenilenmezse silinir; hesabını silince hemen silinir; güncel sürümde hesaptan çıkış yaptığında o cihazın jetonu da silinir.</li>
               <li><strong>Şikâyet ve sorun bildirimleri:</strong> <strong>12 ay</strong>. Gönderdiğin bildirimler hesabını silince silinir; başka oyuncuların senin hakkında yaptığı şikâyetler, seninle bağı kaldırılarak 12 ay dolana kadar saklanabilir.</li>
               <li><strong>Supabase'teki kullanım olayları</strong> (analytics_events): <strong>14 ay</strong>; hesabını silince hemen silinir.</li>
-              <li><strong>Firebase Analytics verileri:</strong> Google'ın Analytics saklama ayarına göre (Google'ın sunduğu seçenekler: 2 veya 14 ay); bu veriler hesabınla değil, rastgele bir uygulama kurulum kimliğiyle ilişkilidir.</li>
+              <li><strong>Firebase Analytics verileri (yalnız eski sürümlerden):</strong> güncel sürüm Firebase Analytics'e veri göndermez. Eski sürümlerden gelmiş veriler Google'ın Analytics saklama ayarına göre (2 veya 14 ay) silinir; hesabınla değil, rastgele bir uygulama kurulum kimliğiyle ilişkilidir.</li>
               <li><strong>Sunucu günlükleri ve veritabanı yedekleri:</strong> Supabase tarafından kısa süreli tutulur ve kendiliğinden silinir.</li>
               <li><strong>Satın alma kayıtları:</strong> Apple, Google ve RevenueCat tarafından, kendi politikaları ve yasal (vergi, muhasebe) yükümlülükleri gereği saklanır.</li>
               <li><strong>KVKK başvuruları ve yazışmalar:</strong> cevaplandığını ispat etmek için en fazla <strong>3 yıl</strong>.</li>
@@ -208,6 +209,7 @@
             <span class="section-number">13</span>
             <h2>Değişiklikler</h2>
 <p>Bu politikayı veri işleme faaliyetlerimiz değiştiğinde güncelleriz. Önemli değişikliklerde bu sayfadaki tarihi değiştirir ve gerekirse uygulama içinde bildiririz.</p>
+<p><strong>8 Kasım 2026 (aynı gün, ek):</strong> uygulamanın güncel sürümüne göre kişiselleştirilmiş reklam rıza ekranı (ATT'den önce), Premium'da reklam sisteminin başlatılmaması, Firebase Analytics'in kapatılması, 24 ay kullanılmayan misafir hesapların silinmesi ve çıkışta bildirim jetonunun silinmesi eklendi.</p>
           </section>
           <section class="section">
             <span class="section-number">14</span>
@@ -267,7 +269,7 @@
               <li><strong>Social:</strong> friendships and requests, players you block, room invites and in-app notifications (e.g. "New friend request").</li>
               <li><strong>Reports and problem reports:</strong> the category you choose, the description you write (max. 2000 characters), the related room and player.</li>
               <li><strong>Push token:</strong> if you allow notifications, your device's push token and platform (iOS/Android).</li>
-              <li><strong>Usage statistics:</strong> in-app events (e.g. starting a game, creating a room) are sent to Supabase with your user ID and to Google Firebase Analytics with a random app-instance ID. In the current app version, advertising-ID collection and ad-personalisation signals are switched off in Firebase Analytics; in earlier versions Firebase Analytics could also receive the advertising ID where the device allowed it.</li>
+              <li><strong>Usage statistics:</strong> in-app events (e.g. starting a game, creating a room) are sent to our own server (Supabase) with your user ID. In the current app version <strong>Google Firebase Analytics is switched off completely</strong>; no usage statistics are sent to Google. Earlier versions also sent events to Firebase Analytics with a random app-instance ID (in some older versions together with the advertising ID where the device allowed it).</li>
               <li><strong>Purchases:</strong> Premium purchase information, store receipt and transaction ID. RevenueCat verifies the purchase with an anonymous ID that is separate from your Supabase account.</li>
               <li><strong>Ad and device data:</strong> see the "Advertising" section for what our ad partners process.</li>
               <li><strong>Technical logs:</strong> IP address, request time and request details for server security and debugging (Supabase server logs).</li>
@@ -307,12 +309,13 @@
             <p>These networks may process: the advertising ID (on iOS the IDFA only if you allow it; on Android the Google advertising ID), the identifier for vendor (IDFV), IP address and approximate location derived from it, device model, operating system and language, ad interactions such as views and clicks, and diagnostic data such as errors and performance.</p>
             <p><strong>Your choices:</strong></p>
             <ul>
-              <li><strong>iOS:</strong> Before ads start, the app asks for permission with Apple's App Tracking Transparency (ATT) prompt. If you don't allow it, the IDFA is not shared. You can change this in Settings › Privacy &amp; Security › Tracking.</li>
-              <li><strong>EEA, United Kingdom and Switzerland:</strong> on first launch you are asked for consent before ads may be personalised.</li>
+              <li><strong>Consent screen (everywhere outside the EEA, incl. Türkiye):</strong> In the current app version, before ads start and if you have no stored choice, a <strong>"Personalized ads consent"</strong> screen is shown once (to existing users on the first launch after the update, on a screen such as Home, never during a game). It is separate from the privacy notice; it explains what this means and that the advertising ID and device and ad-interaction data are transferred to ad partners abroad, and offers two equal options: <strong>I accept</strong> / <strong>I don't accept</strong>. The legal basis for personalised ads is the <strong>explicit consent</strong> you give on this screen; it is optional and no feature depends on it.</li>
+              <li><strong>EEA, United Kingdom and Switzerland:</strong> the GDPR consent dialog is shown at the same point (personalised / non-personalised ads).</li>
+              <li><strong>iOS:</strong> Apple's App Tracking Transparency (ATT) prompt is shown only if you accept personalised ads; if you don't, ATT is never asked and the IDFA is not shared. You can also change this in Settings › Privacy &amp; Security › Tracking.</li>
               <li><strong>USA:</strong> choosing non-personalised ads also opts you out of the "sale" or "sharing" of your personal information for targeted advertising under US state privacy laws (such as the CCPA/CPRA); we pass this signal to Unity LevelPlay.</li>
-              <li><strong>Türkiye and other countries:</strong> in current versions, users in Türkiye are not shown a separate ad-consent screen on first launch; on iOS the advertising ID is shared only if you allow it in the ATT prompt; on Android the ad networks may use the device's advertising ID. If you don't want personalised ads, choose "non-personalised" under <strong>Profile and settings › Privacy Choices</strong> in the app and/or delete the advertising ID in your device settings.</li>
-              <li><strong>Everywhere:</strong> you can change your choice at any time under Profile and settings › Privacy Choices. With non-personalised ads you still see ads, but the ad network is told not to use your personal data for targeting. On Android you can reset or delete your advertising ID under Settings › Privacy (or Google) › Ads.</li>
-              <li><strong>Premium:</strong> Premium users don't see banner or interstitial ads; rewarded ads play only if you choose. The ad system is still started in the app for Premium users (and the iOS ATT prompt may appear), so ad networks may continue to process basic device data.</li>
+              <li><strong>If you don't accept (or there is no choice):</strong> you still see ads, but they are not personalised; on iOS and Android Unity LevelPlay receives a "no consent" and "do not sell/share" signal. Your IP address and basic device information are still sent to the ad networks to show the ad (legitimate interest). <strong>Older versions</strong> did not have this screen; there you can choose "non-personalised" under <strong>Profile and settings › Privacy Choices</strong> and/or delete the advertising ID in your device settings.</li>
+              <li><strong>Everywhere:</strong> you can withdraw or change your consent at any time under <strong>Profile and settings › Privacy Choices</strong> (the row shows the current state). With non-personalised ads you still see ads, but the ad network is told not to use your personal data for targeting. On Android you can reset or delete your advertising ID under Settings › Privacy (or Google) › Ads.</li>
+              <li><strong>Premium:</strong> Premium users (including the 72-hour trial) see no ads. In the current app version the ad system (Unity LevelPlay SDK) is <strong>not started at all</strong> for Premium, and neither the consent screen nor the iOS ATT prompt is shown, so no data goes to ad networks. When a trial ends, the ad system starts on the next launch with the consent step above. In older versions the ad system was started for Premium users too.</li>
             </ul>
           </section>
           <section class="section">
@@ -320,7 +323,7 @@
             <h2>Service providers and countries</h2>
 <ul>
               <li><strong>Supabase Inc.</strong> — accounts and authentication, database, online rooms, server functions, sending notifications · servers in Frankfurt, Germany (EU, eu-central-1); company in the USA</li>
-              <li><strong>Google LLC</strong> — Firebase Analytics (usage statistics), Firebase Cloud Messaging (notification delivery), Google Sign-In, Google Play (distribution and payment) · USA and other countries</li>
+              <li><strong>Google LLC</strong> — Firebase Cloud Messaging (notification delivery; Firebase Analytics is off in the current version), Google Sign-In, Google Play (distribution and payment) · USA and other countries</li>
               <li><strong>Apple Inc.</strong> — Sign in with Apple, Apple Push Notification service, App Store (distribution and payment) · USA and other countries</li>
               <li><strong>RevenueCat Inc.</strong> — verifying and restoring the Premium purchase · USA</li>
               <li><strong>Advertising partners</strong> — named in the "Advertising" section below · USA, Israel, Singapore, Russian Federation/UAE and other countries</li>
@@ -339,13 +342,13 @@
             <h2>Retention</h2>
 <ul>
               <li><strong>Account, profile, player name, game history, season scores, friendships and blocks:</strong> while your account exists (for statistics and leaderboards). Deleted immediately when you delete your account.</li>
-              <li><strong>Guest accounts:</strong> kept until you delete them. There is currently no automatic deletion period for long-unused guest accounts; you can delete a guest account in the app at any time.</li>
+              <li><strong>Guest accounts:</strong> guest accounts that have not been used at all for <strong>24 months</strong> (no launch, game, room, friendship, push token or other activity) and have no purchase are deleted automatically, with all their server data, by a daily maintenance job (same scope as account deletion). You can also delete a guest account in the app at any time. Accounts linked with e-mail or Google/Apple are not deleted this way.</li>
               <li><strong>Room data</strong> (room, players, roles, clues, votes, round results): closed rooms are deleted <strong>30 days</strong> after their last activity; open rooms left inactive are closed automatically.</li>
               <li><strong>In-app notifications</strong> (friend requests, invites): <strong>90 days</strong>.</li>
-              <li><strong>Push token:</strong> deleted if not refreshed for <strong>270 days</strong>; deleted immediately when you delete your account.</li>
+              <li><strong>Push token:</strong> deleted if not refreshed for <strong>270 days</strong>; deleted immediately when you delete your account; in the current version this device's token is also deleted when you sign out.</li>
               <li><strong>Reports and problem reports:</strong> <strong>12 months</strong>. Reports you sent are deleted with your account; reports other players made about you may be kept, without the link to your account, until the 12 months have passed.</li>
               <li><strong>Usage events in Supabase</strong> (analytics_events): <strong>14 months</strong>; deleted immediately when you delete your account.</li>
-              <li><strong>Firebase Analytics data:</strong> according to Google's Analytics retention setting (Google offers 2 or 14 months); this data is linked to a random app-instance ID, not to your account.</li>
+              <li><strong>Firebase Analytics data (older versions only):</strong> the current version sends nothing to Firebase Analytics. Data from older versions is deleted according to Google's Analytics retention setting (2 or 14 months); it is linked to a random app-instance ID, not to your account.</li>
               <li><strong>Server logs and database backups:</strong> kept briefly by Supabase and deleted automatically.</li>
               <li><strong>Purchase records:</strong> kept by Apple, Google and RevenueCat under their own policies and legal (tax, accounting) obligations.</li>
               <li><strong>Privacy requests and correspondence:</strong> up to <strong>3 years</strong>, to prove they were answered.</li>
@@ -387,6 +390,7 @@
             <span class="section-number">13</span>
             <h2>Changes</h2>
 <p>We update this policy when our processing changes. For significant changes we update the date on this page and, where appropriate, tell you in the app.</p>
+<p><strong>8 November 2026 (same day, addendum):</strong> added, for the current app version: the personalised-ads consent screen (before ATT), the ad system not being started for Premium, Firebase Analytics being switched off, deletion of guest accounts unused for 24 months, and deletion of the push token on sign-out.</p>
           </section>
           <section class="section">
             <span class="section-number">14</span>
